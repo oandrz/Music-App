@@ -1,4 +1,4 @@
-package eu.krzdabrowski.starter.database
+package com.dre.musicapp.database
 
 import android.content.Context
 import androidx.room.Room

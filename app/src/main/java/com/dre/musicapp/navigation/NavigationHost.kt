@@ -1,4 +1,4 @@
-package eu.krzdabrowski.starter.navigation
+package com.dre.musicapp.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

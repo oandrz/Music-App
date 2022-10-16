@@ -1,4 +1,4 @@
-package eu.krzdabrowski.starter.navigation
+package com.dre.musicapp.navigation
 
 import dagger.Binds
 import dagger.Module

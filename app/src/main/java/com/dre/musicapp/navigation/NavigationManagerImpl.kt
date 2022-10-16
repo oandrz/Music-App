@@ -1,4 +1,4 @@
-package eu.krzdabrowski.starter.navigation
+package com.dre.musicapp.navigation
 
 import eu.krzdabrowski.starter.core.di.MainImmediateScope
 import eu.krzdabrowski.starter.core.navigation.NavigationCommand

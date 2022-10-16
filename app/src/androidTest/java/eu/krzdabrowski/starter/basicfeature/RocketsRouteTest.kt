@@ -5,7 +5,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import eu.krzdabrowski.starter.MainActivity
+import com.dre.musicapp.MainActivity
 import eu.krzdabrowski.starter.basicfeature.presentation.composable.RocketsRoute
 import eu.krzdabrowski.starter.utils.getHiltTestViewModel
 import org.junit.Before

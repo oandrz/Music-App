@@ -1,4 +1,4 @@
-package eu.krzdabrowski.starter
+package com.dre.musicapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -15,7 +15,8 @@ import eu.krzdabrowski.starter.core.extensions.collectWithLifecycle
 import eu.krzdabrowski.starter.core.navigation.NavigationFactory
 import eu.krzdabrowski.starter.core.navigation.NavigationManager
 import eu.krzdabrowski.starter.core.ui.AndroidStarterTheme
-import eu.krzdabrowski.starter.navigation.NavigationHost
+import com.dre.musicapp.navigation.NavigationHost
+import eu.krzdabrowski.starter.R
 import javax.inject.Inject
 
 @AndroidEntryPoint
