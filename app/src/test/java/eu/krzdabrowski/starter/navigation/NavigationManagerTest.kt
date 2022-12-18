@@ -1,7 +1,7 @@
 package eu.krzdabrowski.starter.navigation
 
 import app.cash.turbine.test
-import com.dre.musicapp.navigation.NavigationManagerImpl
+import com.dre.money.navigation.NavigationManagerImpl
 import eu.krzdabrowski.starter.core.navigation.NavigationCommand
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest

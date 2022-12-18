@@ -1,4 +1,4 @@
-package com.dre.musicapp.database
+package com.dre.money.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

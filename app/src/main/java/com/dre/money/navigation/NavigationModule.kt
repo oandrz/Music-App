@@ -1,4 +1,4 @@
-package com.dre.musicapp.navigation
+package com.dre.money.navigation
 
 import dagger.Binds
 import dagger.Module

@@ -11,16 +11,16 @@ plugins {
 
 android {
     compileSdk = 33
-    namespace = "eu.krzdabrowski.starter"
+    namespace = "com.dre.money"
 
     defaultConfig {
-        applicationId = "eu.krzdabrowski.starter"
+        applicationId = "com.dre.money"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "eu.krzdabrowski.starter.HiltTestRunner"
+        testInstrumentationRunner = "com.dre.money.HiltTestRunner"
     }
 
     buildFeatures {

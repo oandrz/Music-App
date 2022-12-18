@@ -1,8 +1,8 @@
-package com.dre.musicapp
+package com.dre.money
 
 import android.app.Application
+import com.dre.money.BuildConfig.*
 import dagger.hilt.android.HiltAndroidApp
-import eu.krzdabrowski.starter.BuildConfig
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
@@ -12,7 +12,7 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        if (BuildConfig.DEBUG) {
+        if (DEBUG) {
             Timber.plant(DebugTree())
         }
     }

@@ -1,4 +1,4 @@
-package com.dre.musicapp
+package com.dre.money
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -15,8 +15,7 @@ import eu.krzdabrowski.starter.core.extensions.collectWithLifecycle
 import eu.krzdabrowski.starter.core.navigation.NavigationFactory
 import eu.krzdabrowski.starter.core.navigation.NavigationManager
 import eu.krzdabrowski.starter.core.ui.AndroidStarterTheme
-import com.dre.musicapp.navigation.NavigationHost
-import eu.krzdabrowski.starter.R
+import com.dre.money.navigation.NavigationHost
 import javax.inject.Inject
 
 @AndroidEntryPoint
