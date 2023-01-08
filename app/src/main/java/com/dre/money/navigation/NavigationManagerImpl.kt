@@ -1,8 +1,8 @@
 package com.dre.money.navigation
 
-import eu.krzdabrowski.starter.core.di.MainImmediateScope
-import eu.krzdabrowski.starter.core.navigation.NavigationCommand
-import eu.krzdabrowski.starter.core.navigation.NavigationManager
+import com.dre.core.di.MainImmediateScope
+import com.dre.core.navigation.NavigationCommand
+import com.dre.core.navigation.NavigationManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow

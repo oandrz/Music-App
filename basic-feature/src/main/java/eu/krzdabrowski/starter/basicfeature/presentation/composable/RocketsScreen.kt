@@ -18,8 +18,8 @@ import eu.krzdabrowski.starter.basicfeature.presentation.RocketsIntent.RefreshRo
 import eu.krzdabrowski.starter.basicfeature.presentation.RocketsIntent.RocketClicked
 import eu.krzdabrowski.starter.basicfeature.presentation.RocketsUiState
 import eu.krzdabrowski.starter.basicfeature.presentation.RocketsViewModel
-import eu.krzdabrowski.starter.core.extensions.collectAsStateWithLifecycle
-import eu.krzdabrowski.starter.core.extensions.collectWithLifecycle
+import com.dre.core.extensions.collectAsStateWithLifecycle
+import com.dre.core.extensions.collectWithLifecycle
 import kotlinx.coroutines.flow.Flow
 
 @Composable

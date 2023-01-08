@@ -1,4 +1,4 @@
-package eu.krzdabrowski.starter.core.extensions
+package com.dre.core.extensions
 
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.TimeoutCancellationException

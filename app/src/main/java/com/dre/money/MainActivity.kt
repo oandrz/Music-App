@@ -11,10 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import eu.krzdabrowski.starter.core.extensions.collectWithLifecycle
-import eu.krzdabrowski.starter.core.navigation.NavigationFactory
-import eu.krzdabrowski.starter.core.navigation.NavigationManager
-import eu.krzdabrowski.starter.core.ui.AndroidStarterTheme
+import com.dre.core.extensions.collectWithLifecycle
+import com.dre.core.navigation.NavigationFactory
+import com.dre.core.navigation.NavigationManager
+import com.dre.core.ui.AndroidStarterTheme
 import com.dre.money.navigation.NavigationHost
 import javax.inject.Inject
 

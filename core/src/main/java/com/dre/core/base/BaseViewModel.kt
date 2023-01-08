@@ -1,4 +1,4 @@
-package eu.krzdabrowski.starter.core.base
+package com.dre.core.base
 
 import android.os.Parcelable
 import androidx.lifecycle.SavedStateHandle

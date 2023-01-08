@@ -1,4 +1,4 @@
-package eu.krzdabrowski.starter.core.navigation
+package com.dre.core.navigation
 
 import kotlinx.coroutines.flow.Flow
 
