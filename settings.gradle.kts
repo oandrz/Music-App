@@ -1,5 +1,6 @@
 include(":app")
 include(":basic-feature")
+include(":receipt-recognition")
 include(":core")
 
 pluginManagement {

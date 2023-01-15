@@ -4,4 +4,5 @@ sealed class NavigationDestination(
     val route: String
 ) {
     object Rockets : NavigationDestination("rocketsDestination")
+    object ReceiptRecognition : NavigationDestination("receiptRecognition")
 }

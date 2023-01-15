@@ -64,6 +64,7 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":basic-feature"))
+    implementation(project(":receipt-recognition"))
 
     implementation(libs.bundles.common)
     implementation(libs.material)

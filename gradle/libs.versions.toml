@@ -2,29 +2,30 @@
 # plugins
 androidGradle                       = "7.4.0"
 detekt                              = "1.22.0-RC1"
-detektTwitterCompose                = "0.0.18"
+detektTwitterCompose                = "0.0.26"
 junit                               = "1.8.2.1"
 ksp                                 = "1.7.20-1.0.6"
 ktLint                              = "3.12.0"
 
 # production libraries
 coil                                = "2.2.2"
-compose                             = "1.2.1"
+compose                             = "1.3.3"
+composeMaterial                     = "1.3.1"
 composeAccompanist                  = "0.25.1"
 composeCompiler                     = "1.3.2"
 composeNavigation                   = "2.5.2"
 composeNavigationHilt               = "1.0.0"
-desugar                             = "1.2.2"
-hilt                                = "2.44"
+desugar                             = "2.0.0"
+hilt                                = "2.44.2"
 kotlin                              = "1.7.20"
 kotlinCoroutines                    = "1.6.4"
-kotlinSerialization                 = "1.4.0"
+kotlinSerialization                 = "1.4.1"
 kotlinSerializationConverter        = "0.8.0"
 lifecycle                           = "2.5.1"
-material                            = "1.6.1"
-okHttpLoggingInterceptor            = "4.10.0"
+material                            = "1.7.0"
+okHttpLoggingInterceptor            = "5.0.0-alpha.11"
 retrofit                            = "2.9.0"
-room                                = "2.4.3"
+room                                = "2.5.0"
 timber                              = "5.0.1"
 
 # test libraries
@@ -33,8 +34,8 @@ testMockk                           = "1.13.2"
 testTurbine                         = "0.11.0"
 
 # android test libraries
-testAndroidCore                     = "1.5.0-alpha02" # fix crash on Android 13 - https://developer.android.com/jetpack/androidx/releases/test#core_150_2
-testAndroidRunner                   = "1.4.0"
+testAndroidCore                     = "1.5.0" # fix crash on Android 13 - https://developer.android.com/jetpack/androidx/releases/test#core_150_2
+testAndroidRunner                   = "1.5.2"
 
 
 [plugins]
@@ -55,7 +56,7 @@ ktLint                              = { id = "org.jmailen.kotlinter", version.re
 # production libraries
 coil                                = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 composeAccompanistSwipeRefresh      = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "composeAccompanist" }
-composeMaterial                     = { module = "androidx.compose.material:material", version.ref = "compose" }
+composeMaterial                     = { module = "androidx.compose.material:material", version.ref = "composeMaterial" }
 composeNavigation                   = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
 composeNavigationHilt               = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "composeNavigationHilt" }
 desugar                             = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar" }
