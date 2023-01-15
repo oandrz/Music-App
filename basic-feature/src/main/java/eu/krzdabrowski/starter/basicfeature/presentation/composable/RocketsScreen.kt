@@ -1,5 +1,6 @@
 package eu.krzdabrowski.starter.basicfeature.presentation.composable
 
+import android.annotation.SuppressLint
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.rememberScaffoldState
@@ -20,13 +21,17 @@ import eu.krzdabrowski.starter.basicfeature.presentation.RocketsUiState
 import eu.krzdabrowski.starter.basicfeature.presentation.RocketsViewModel
 import com.dre.core.extensions.collectAsStateWithLifecycle
 import com.dre.core.extensions.collectWithLifecycle
+import com.dre.core.navigation.NavigationCommand
+import com.dre.core.navigation.NavigationDestination
+import com.dre.core.navigation.NavigationManager
 import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun RocketsRoute(
-    viewModel: RocketsViewModel = hiltViewModel()
+    viewModel: RocketsViewModel = hiltViewModel(),
+    navigationManager: NavigationManager
 ) {
-    HandleEvents(viewModel.event)
+    HandleEvents(viewModel.event, navigationManager)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     RocketsScreen(
@@ -40,6 +45,7 @@ fun RocketsRoute(
     )
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 internal fun RocketsScreen(
     uiState: RocketsUiState,
@@ -71,13 +77,14 @@ internal fun RocketsScreen(
 }
 
 @Composable
-private fun HandleEvents(events: Flow<RocketsEvent>) {
-    val uriHandler = LocalUriHandler.current
-
+private fun HandleEvents(events: Flow<RocketsEvent>, navigationManager: NavigationManager) {
     events.collectWithLifecycle {
         when (it) {
             is OpenWebBrowserWithDetails -> {
-                uriHandler.openUri(it.uri)
+                navigationManager.navigate(object : NavigationCommand {
+                    override val destination: String
+                        get() = NavigationDestination.ReceiptRecognition.route
+                })
             }
         }
     }

@@ -86,9 +86,7 @@ class RocketsViewModel @Inject constructor(
     }
 
     private fun rocketClicked(uri: String): Flow<PartialState> {
-        if (uri.startsWith(HTTP_PREFIX) || uri.startsWith(HTTPS_PREFIX)) {
-            publishEvent(OpenWebBrowserWithDetails(uri))
-        }
+        publishEvent(OpenWebBrowserWithDetails(uri))
 
         return emptyFlow()
     }
