@@ -3,11 +3,12 @@ package eu.krzdabrowski.starter.basicfeature.presentation.composable
 import android.annotation.SuppressLint
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
@@ -25,6 +26,8 @@ import com.dre.core.navigation.NavigationCommand
 import com.dre.core.navigation.NavigationDestination
 import com.dre.core.navigation.NavigationManager
 import kotlinx.coroutines.flow.Flow
+
+private const val TOOLBAR = "Testing"
 
 @Composable
 fun RocketsRoute(
@@ -55,6 +58,13 @@ internal fun RocketsScreen(
     val scaffoldState = rememberScaffoldState()
 
     Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = TOOLBAR)
+                }
+            )
+        },
         scaffoldState = scaffoldState
     ) {
         SwipeRefresh(
