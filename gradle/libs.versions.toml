@@ -1,6 +1,6 @@
 [versions]
 # plugins
-androidGradle                       = "7.3.0"
+androidGradle                       = "7.4.0"
 detekt                              = "1.22.0-RC1"
 detektTwitterCompose                = "0.0.18"
 junit                               = "1.8.2.1"
