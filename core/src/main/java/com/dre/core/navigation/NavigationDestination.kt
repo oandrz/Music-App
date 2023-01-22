@@ -5,4 +5,6 @@ sealed class NavigationDestination(
 ) {
     object Rockets : NavigationDestination("rocketsDestination")
     object ReceiptRecognition : NavigationDestination("receiptRecognition")
+
+    object Back : NavigationDestination("navigationBack")
 }

@@ -47,13 +47,9 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import com.dre.image_picker.R
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.rememberPagerState
 import com.huhx.picker.data.AssetInfo
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun AssetPreviewScreen(
     index: Int,
@@ -61,14 +57,12 @@ internal fun AssetPreviewScreen(
     navigateUp: () -> Unit,
     selectedList: SnapshotStateList<AssetInfo>,
 ) {
-    val pageState = rememberPagerState(initialPage = index)
-
     Scaffold(
         topBar = { PreviewTopAppBar(navigateUp = navigateUp) },
         bottomBar = {
             SelectorBottomBar(
                 selectedList = selectedList,
-                assetInfo = assets[pageState.currentPage]
+                assetInfo = assets[index]
             ) {
                 navigateUp()
                 if (selectedList.isEmpty()) {
@@ -82,7 +76,7 @@ internal fun AssetPreviewScreen(
                 .padding(innerPadding)
                 .background(Color.Black)
         ) {
-            AssetPreview(assets = assets, pagerState = pageState)
+            AssetPreview(assets = assets, index = index)
         }
     }
 }
@@ -145,35 +139,23 @@ private fun SelectorBottomBar(
     }
 }
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun AssetPreview(
     assets: List<AssetInfo>,
-    pagerState: PagerState
+    index: Int
 ) {
     Box {
-        HorizontalPager(
-            count = assets.size,
-            state = pagerState,
-            contentPadding = PaddingValues(horizontal = 0.dp),
-            modifier = Modifier.fillMaxSize()
-        ) { page ->
-            ImageItem(assets[page])
-        }
+        ImageItem(assets[index])
     }
 }
 
 @Composable
 private fun ImageItem(assetInfo: AssetInfo) {
-
-    if (assetInfo.isImage()) {
-        ImagePreview(uriString = assetInfo.uriString)
-    }
+    ImagePreview(uriString = assetInfo.uriString)
 }
 
 @Composable
 private fun ImagePreview(uriString: String) {
-
     var scale by remember { mutableStateOf(1f) }
     val xOffset by remember { mutableStateOf(0f) }
     val yOffset by remember { mutableStateOf(0f) }

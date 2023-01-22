@@ -59,7 +59,6 @@ coil                                = { module = "io.coil-kt:coil-compose", vers
 coilVideo                           = { module = "io.coil-kt:coil-video", version.ref = "coil" }
 coilGif                             = { module = "io.coil-kt:coil-gif", version.ref = "coil" }
 composeAccompanistSwipeRefresh      = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "composeAccompanist" }
-composeAccompanistAnimation         = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "composeAccompanist" }
 composeAccompanistPermission        = { module = "com.google.accompanist:accompanist-permissions", version.ref ="composeAccompanist" }
 composeAccompanistPager             = { module = "com.google.accompanist:accompanist-pager", version.ref ="composeAccompanist" }
 composeAccompanistPagerIndicator    = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref ="composeAccompanist" }

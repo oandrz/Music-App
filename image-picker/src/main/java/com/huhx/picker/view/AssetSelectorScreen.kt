@@ -31,7 +31,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import coil.decode.VideoFrameDecoder
 import coil.request.ImageRequest
 import com.huhx.picker.data.AssetDirectory
 
@@ -96,7 +95,6 @@ private fun DirectorySelector(
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(it.cover ?: Icons.Default.Place)
-                            .decoderFactory(VideoFrameDecoder.Factory())
                             .build(),
                         modifier = Modifier
                             .size(32.dp)

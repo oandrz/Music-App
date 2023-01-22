@@ -61,23 +61,7 @@ dependencies {
 
     implementation(libs.bundles.common)
     implementation(libs.coil)
-    implementation(libs.coilVideo)
     implementation(libs.coilGif)
-    implementation(libs.composeAccompanistAnimation)
     implementation(libs.composeAccompanistPermission)
-    implementation(libs.composeAccompanistPager)
-    implementation(libs.composeAccompanistPagerIndicator)
     implementation(libs.composeMaterial3)
-
-    implementation(libs.composeNavigationHilt)
-    implementation(libs.kotlinSerialization)
-    implementation(libs.retrofit)
-    implementation(libs.room)
-    testImplementation(libs.bundles.commonTest)
-    androidTestImplementation(libs.testAndroidCompose)
-    debugImplementation(libs.debugComposeManifest)
-
-    kapt(libs.hiltCompiler)
-
-    detektPlugins(libs.detektTwitterCompose)
 }

@@ -56,6 +56,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":image-picker"))
 
     implementation(libs.bundles.common)
     implementation(libs.coil)

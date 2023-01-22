@@ -6,7 +6,6 @@ import android.content.Context
 import android.database.Cursor
 import android.net.Uri
 import android.provider.MediaStore
-import com.huhx.picker.constant.RequestType
 
 private val projection = arrayOf(
     MediaStore.Video.Media._ID,
@@ -70,9 +69,9 @@ internal object AssetLoader {
         return null
     }
 
-    fun load(context: Context, requestType: RequestType): List<AssetInfo> {
+    fun load(context: Context): List<AssetInfo> {
         val assets = ArrayList<AssetInfo>()
-        val cursor = createCursor(context, requestType)
+        val cursor = createCursor(context)
         cursor?.use { it ->
             val indexId = it.getColumnIndex(projection[0])
             val indexFilename = it.getColumnIndex(projection[1])
@@ -110,25 +109,14 @@ internal object AssetLoader {
         return assets
     }
 
-    private fun createCursor(context: Context, requestType: RequestType): Cursor? {
+    private fun createCursor(context: Context): Cursor? {
         val mediaType = MediaStore.Files.FileColumns.MEDIA_TYPE
         val image = MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
-        val video = MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO
 
-        val selection = when (requestType) {
-            RequestType.COMMON -> Selection(
-                selection = "$mediaType=? OR $mediaType=?",
-                arguments = listOf(image.toString(), video.toString())
-            )
-            RequestType.IMAGE -> Selection(
-                selection = "$mediaType=?",
-                arguments = listOf(image.toString())
-            )
-            RequestType.VIDEO -> Selection(
-                selection = "$mediaType=?",
-                arguments = listOf(video.toString())
-            )
-        }
+        val selection = Selection(
+            selection = "$mediaType=?",
+            arguments = listOf(image.toString())
+        )
         return createMediaCursor(context, selection)
     }
 

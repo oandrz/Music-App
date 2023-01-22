@@ -2,6 +2,7 @@ package com.dre.money.navigation
 
 import com.dre.core.di.MainImmediateScope
 import com.dre.core.navigation.NavigationCommand
+import com.dre.core.navigation.NavigationDestination
 import com.dre.core.navigation.NavigationManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
@@ -18,6 +19,14 @@ class NavigationManagerImpl @Inject constructor(
     override fun navigate(command: NavigationCommand) {
         externalMainImmediateScope.launch {
             navigationCommandChannel.send(command)
+        }
+    }
+
+    override fun back() {
+        externalMainImmediateScope.launch {
+            navigationCommandChannel.send(object : NavigationCommand {
+                override val destination: String = NavigationDestination.Back.route
+            })
         }
     }
 }

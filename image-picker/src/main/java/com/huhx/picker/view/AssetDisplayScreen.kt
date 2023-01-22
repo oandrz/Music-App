@@ -3,12 +3,10 @@ package com.huhx.picker.view
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -28,16 +26,12 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
@@ -51,19 +45,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import coil.decode.VideoFrameDecoder
 import coil.request.ImageRequest
 import com.dre.image_picker.R
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.rememberPagerState
-import com.huhx.picker.constant.RequestType
 import com.huhx.picker.data.AssetInfo
 import com.huhx.picker.data.AssetViewModel
-import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 internal fun AssetDisplayScreen(
     viewModel: AssetViewModel,
@@ -84,17 +70,7 @@ internal fun AssetDisplayScreen(
         bottomBar = { DisplayBottomBar(viewModel, onPicked) }
     ) { padding ->
         Box(modifier = Modifier.padding(padding)) {
-            val tabs = listOf(TabItem.All, TabItem.Video, TabItem.Image)
-            val pagerState = rememberPagerState()
-
-            Column {
-                AssetTab(tabs = tabs, pagerState = pagerState)
-                TabsContent(
-                    tabs = tabs,
-                    pagerState = pagerState,
-                    viewModel = viewModel
-                )
-            }
+            AssetContent(viewModel)
         }
     }
 }
@@ -151,13 +127,13 @@ private fun DisplayBottomBar(
                     cameraLauncher.launch(cameraUri)
                 },
                 content = {
-                    Text(text = "Camera", fontSize = 16.sp, color = Color.Gray)
+                    Text(text = stringResource(id = R.string.label_camera), fontSize = 16.sp, color = Color.Gray)
                 }
             )
             TextButton(
                 onClick = {},
                 content = {
-                    Text(text = "Album", fontSize = 16.sp)
+                    Text(text = stringResource(id = R.string.label_album), fontSize = 16.sp)
                 }
             )
         }
@@ -169,7 +145,7 @@ private fun DisplayBottomBar(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = "Select", fontSize = 12.sp, color = Color.Gray)
+            Text(text = stringResource(id = R.string.text_asset_select), fontSize = 12.sp, color = Color.Gray)
             AppBarButton(
                 size = viewModel.selectedList.size,
                 onPicked = { onPicked(viewModel.selectedList) }
@@ -178,54 +154,11 @@ private fun DisplayBottomBar(
     }
 }
 
-@OptIn(ExperimentalPagerApi::class)
-@Composable
-private fun AssetTab(
-    tabs: List<TabItem>,
-    pagerState: PagerState,
-) {
-    val coroutineScope = rememberCoroutineScope()
-
-    TabRow(
-        selectedTabIndex = pagerState.currentPage,
-        indicator = {},
-    ) {
-        tabs.forEachIndexed { index, tab ->
-            Tab(
-                selected = pagerState.currentPage == index,
-                text = { Text(text = stringResource(tab.resourceId)) },
-                selectedContentColor = MaterialTheme.colorScheme.onSurface,
-                unselectedContentColor = Color.Gray,
-                onClick = {
-                    coroutineScope.launch { pagerState.animateScrollToPage(index) }
-                }
-            )
-        }
-    }
-}
-
-@OptIn(ExperimentalPagerApi::class)
-@Composable
-private fun TabsContent(
-    tabs: List<TabItem>,
-    pagerState: PagerState,
-    viewModel: AssetViewModel
-) {
-    HorizontalPager(
-        state = pagerState,
-        count = tabs.size,
-        userScrollEnabled = true
-    ) { page ->
-        tabs[page].screen(viewModel)
-    }
-}
-
 @Composable
 private fun AssetContent(
-    viewModel: AssetViewModel,
-    requestType: RequestType
+    viewModel: AssetViewModel
 ) {
-    val assets = viewModel.getAssets(requestType)
+    val assets = viewModel.getAssets()
     val gridCount = LocalAssetConfig.current.gridCount
 
     LazyVerticalGrid(
@@ -239,7 +172,7 @@ private fun AssetContent(
         itemsIndexed(assets, key = { _, it -> it.id }) { index, it ->
             AssetImage(
                 assetInfo = it,
-                navigateToPreview = { viewModel.navigateToPreview(index, requestType) },
+                navigateToPreview = { viewModel.navigateToPreview(index) },
                 selectedList = viewModel.selectedList
             )
         }
@@ -275,7 +208,6 @@ private fun AssetImage(
             AsyncImage(
                 model = ImageRequest.Builder(context)
                     .data(assetInfo.uriString)
-                    .decoderFactory(VideoFrameDecoder.Factory())
                     .build(),
                 modifier = Modifier
                     .fillMaxSize()
@@ -313,21 +245,4 @@ private fun AssetImage(
         }
         AssetImageIndicator(assetInfo = assetInfo, selected = selected, assetSelected = selectedList)
     }
-}
-
-private sealed class TabItem(
-    @StringRes val resourceId: Int,
-    val screen: @Composable (AssetViewModel) -> Unit
-) {
-    object All : TabItem(R.string.tab_item_all, { viewModel ->
-        AssetContent(viewModel, RequestType.COMMON)
-    })
-
-    object Video : TabItem(R.string.tab_item_video, { viewModel ->
-        AssetContent(viewModel, RequestType.VIDEO)
-    })
-
-    object Image : TabItem(R.string.tab_item_image, { viewModel ->
-        AssetContent(viewModel, RequestType.IMAGE)
-    })
 }

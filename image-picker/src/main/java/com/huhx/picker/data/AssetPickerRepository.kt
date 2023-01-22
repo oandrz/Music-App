@@ -2,13 +2,12 @@ package com.huhx.picker.data
 
 import android.content.Context
 import android.net.Uri
-import com.huhx.picker.constant.RequestType
 
 internal class AssetPickerRepository(
     private val context: Context
 ) {
-    suspend fun getAssets(requestType: RequestType): List<AssetInfo> {
-        return AssetLoader.load(context, requestType)
+    suspend fun getAssets(): List<AssetInfo> {
+        return AssetLoader.load(context)
     }
 
     fun insertImage(): Uri? {

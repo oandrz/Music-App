@@ -8,7 +8,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
-import com.huhx.picker.constant.RequestType
 import kotlinx.coroutines.launch
 
 internal class AssetViewModel(
@@ -23,39 +22,35 @@ internal class AssetViewModel(
         get() = _directoryGroup
 
     val selectedList = mutableStateListOf<AssetInfo>()
-    var directory by mutableStateOf("Photos/Videos")
+    var directory by mutableStateOf("Photos")
 
     fun initDirectories() {
         viewModelScope.launch {
-            initAssets(RequestType.COMMON)
+            initAssets()
             val directoryList = assets.groupBy {
                 it.directory
             }.map {
                 AssetDirectory(directory = it.key, assets = it.value)
             }
             _directoryGroup.clear()
-            _directoryGroup.add(AssetDirectory(directory = "Photos/Videos", assets = assets))
+            _directoryGroup.add(AssetDirectory(directory = "Photos", assets = assets))
             _directoryGroup.addAll(directoryList)
         }
     }
 
-    private suspend fun initAssets(requestType: RequestType) {
+    private suspend fun initAssets() {
         assets.clear()
-        assets.addAll(assetPickerRepository.getAssets(requestType))
+        assets.addAll(assetPickerRepository.getAssets())
     }
 
-    fun getAssets(requestType: RequestType): List<AssetInfo> {
+    fun getAssets(): List<AssetInfo> {
         val assetList = _directoryGroup.first { it.directory == directory }.assets
 
-        return when (requestType) {
-            RequestType.COMMON -> assetList
-            RequestType.IMAGE -> assetList.filter(AssetInfo::isImage)
-            RequestType.VIDEO -> assetList.filter(AssetInfo::isVideo)
-        }
+        return assetList.filter(AssetInfo::isImage)
     }
 
-    fun navigateToPreview(index: Int, requestType: RequestType) {
-        navController.navigate("asset_preview?index=$index&requestType=${requestType.name}")
+    fun navigateToPreview(index: Int) {
+        navController.navigate("asset_preview?index=$index")
     }
 
     fun deleteImage(cameraUri: Uri?) {

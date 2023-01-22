@@ -12,6 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import com.dre.core.extensions.collectWithLifecycle
+import com.dre.core.navigation.NavigationDestination
 import com.dre.core.navigation.NavigationFactory
 import com.dre.core.navigation.NavigationManager
 import com.dre.core.ui.AndroidStarterTheme
@@ -47,7 +48,10 @@ class MainActivity : ComponentActivity() {
                     .collectWithLifecycle(
                         key = navController
                     ) {
-                        navController.navigate(it.destination, it.configuration)
+                        when(it.destination) {
+                            NavigationDestination.Back.route -> navController.navigateUp()
+                            else -> navController.navigate(it.destination, it.configuration)
+                        }
                     }
             }
         }
