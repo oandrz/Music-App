@@ -13,7 +13,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(ViewModelComponent::class)
 object ReceiptRecognitionViewModelModule {
-
     @Provides
     fun provideInitialState(): ReceiptRecognitionUiState = ReceiptRecognitionUiState("test")
 }

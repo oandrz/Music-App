@@ -15,14 +15,25 @@ class ReceiptRecognitionViewModel @Inject constructor(
 ) : BaseViewModel<ReceiptRecognitionUiState, PartialState, ReceiptRecognitionEvent, ReceiptRecognitionIntent>(
   savedStateHandle, initState
 ) {
-    override fun mapIntents(intent: ReceiptRecognitionIntent): Flow<PartialState> {
-        return emptyFlow()
+    override fun mapIntents(intent: ReceiptRecognitionIntent): Flow<PartialState> = when (intent) {
+        is ReceiptRecognitionIntent.NavigationBack -> back()
+        is ReceiptRecognitionIntent.ImagePicked -> processImage()
     }
 
     override fun reduceUiState(
         previousState: ReceiptRecognitionUiState,
         partialState: PartialState
-    ): ReceiptRecognitionUiState {
-        return previousState
+    ): ReceiptRecognitionUiState = when (partialState) {
+        is PartialState.CaptureImage -> previousState.copy("capture image")
+    }
+
+    private fun back(): Flow<PartialState> {
+        publishEvent(ReceiptRecognitionEvent.NavigationBack)
+
+        return emptyFlow()
+    }
+
+    private fun processImage(): Flow<PartialState> {
+        return emptyFlow()
     }
 }

@@ -7,10 +7,10 @@ import kotlinx.parcelize.Parcelize
 @Immutable
 @Parcelize
 data class ReceiptRecognitionUiState(
-    val name: String
+    val name: String = "Just temporary"
 ) : Parcelable {
 
     sealed class PartialState {
-
+        object CaptureImage : PartialState()
     }
 }
