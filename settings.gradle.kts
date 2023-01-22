@@ -2,6 +2,7 @@ include(":app")
 include(":basic-feature")
 include(":receipt-recognition")
 include(":core")
+include(":image-picker")
 
 pluginManagement {
     repositories {

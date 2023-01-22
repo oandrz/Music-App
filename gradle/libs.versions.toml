@@ -11,7 +11,8 @@ ktLint                              = "3.12.0"
 coil                                = "2.2.2"
 compose                             = "1.3.3"
 composeMaterial                     = "1.3.1"
-composeAccompanist                  = "0.25.1"
+composeMaterial3                    = "1.0.1"
+composeAccompanist                  = "0.29.0-alpha"
 composeCompiler                     = "1.3.2"
 composeNavigation                   = "2.5.2"
 composeNavigationHilt               = "1.0.0"
@@ -55,7 +56,14 @@ ktLint                              = { id = "org.jmailen.kotlinter", version.re
 [libraries]
 # production libraries
 coil                                = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+coilVideo                           = { module = "io.coil-kt:coil-video", version.ref = "coil" }
+coilGif                             = { module = "io.coil-kt:coil-gif", version.ref = "coil" }
 composeAccompanistSwipeRefresh      = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "composeAccompanist" }
+composeAccompanistAnimation         = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "composeAccompanist" }
+composeAccompanistPermission        = { module = "com.google.accompanist:accompanist-permissions", version.ref ="composeAccompanist" }
+composeAccompanistPager             = { module = "com.google.accompanist:accompanist-pager", version.ref ="composeAccompanist" }
+composeAccompanistPagerIndicator    = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref ="composeAccompanist" }
+composeMaterial3                    = { module = "androidx.compose.material3:material3", version.ref ="composeMaterial3" }
 composeMaterial                     = { module = "androidx.compose.material:material", version.ref = "composeMaterial" }
 composeNavigation                   = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigation" }
 composeNavigationHilt               = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "composeNavigationHilt" }

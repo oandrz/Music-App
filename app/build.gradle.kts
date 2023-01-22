@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId = "com.dre.money"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -65,6 +65,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":basic-feature"))
     implementation(project(":receipt-recognition"))
+    implementation(project(":image-picker"))
 
     implementation(libs.bundles.common)
     implementation(libs.material)
